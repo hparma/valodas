@@ -6,11 +6,12 @@ import * as Localization from 'react-native-localize';
 import { i18n, setI18nConfig } from './i18n';
 
 const AppContent = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState(i18n.locale);
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
 
   const loadLanguage = async () => {
     try {
       const savedLanguage = await AsyncStorage.getItem('language');
+      console.log("Loaded Language from Storage:", savedLanguage);
       if (savedLanguage) {
         i18n.locale = savedLanguage;
         setSelectedLanguage(savedLanguage);
@@ -18,6 +19,7 @@ const AppContent = () => {
         setI18nConfig();
         setSelectedLanguage(i18n.locale);
       }
+      console.log("Current Locale Set:", i18n.locale);
     } catch (error) {
       console.error("Failed to load the language", error);
     }
@@ -26,14 +28,6 @@ const AppContent = () => {
   useEffect(() => {
     // Initial load
     loadLanguage();
-
-    // Polling for locale changes
-    const interval = setInterval(() => {
-      setI18nConfig();
-      setSelectedLanguage(i18n.locale);
-    }, 10000);
-
-    return () => clearInterval(interval);
   }, []);
 
   const saveLanguage = async (language) => {
@@ -48,6 +42,9 @@ const AppContent = () => {
   };
 
   const greeting = i18n.t('greeting');
+  console.log("Greeting:", greeting);
+  console.log("Selected Language:", selectedLanguage);
+  console.log("System Locale:", Localization.getLocales()[0].languageTag);
 
   return (
     <View style={styles.container}>

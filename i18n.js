@@ -11,7 +11,8 @@ const setI18nConfig = () => {
   const locales = Localization.getLocales();
   if (locales.length > 0) {
     const locale = locales[0].languageTag;
-    const simpleLocale = locale.split('-')[0]; // Use only language part
+    const simpleLocale = locale.split('-')[0]; // Use only the language part
+    console.log("Detected Locale:", simpleLocale);
     i18n.locale = simpleLocale;
   }
 };
