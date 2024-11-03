@@ -1,42 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Localization from 'react-native-localize';
 import { StatusBar } from 'expo-status-bar';
-import languages from './language';
+import * as Localization from 'react-native-localize';
+import { i18n, setI18nConfig } from './i18n';
 
-export default function App() {
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
-  const systemLocale = Localization.getLocales()[0].languageTag; 
-
-  const saveLanguage = async (language) => {
-    try {
-      await AsyncStorage.setItem('language', language);
-      setSelectedLanguage(language);
-    } catch (error) {
-      console.error("Failed to save the language", error);
-    }
-  };
+const AppContent = () => {
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.locale);
 
   const loadLanguage = async () => {
     try {
       const savedLanguage = await AsyncStorage.getItem('language');
       if (savedLanguage) {
+        i18n.locale = savedLanguage;
         setSelectedLanguage(savedLanguage);
       } else {
-        setSelectedLanguage(systemLocale);
+        setI18nConfig();
+        setSelectedLanguage(i18n.locale);
       }
     } catch (error) {
       console.error("Failed to load the language", error);
     }
   };
- //opens the  saved valodas
+
   useEffect(() => {
+    // Initial load
     loadLanguage();
+
+    // Polling for locale changes
+    const interval = setInterval(() => {
+      setI18nConfig();
+      setSelectedLanguage(i18n.locale);
+    }, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
-  //gets the valodu ja nav tad default
-  const greeting = languages[selectedLanguage || systemLocale] || languages.en;
+  const saveLanguage = async (language) => {
+    try {
+      await AsyncStorage.setItem('language', language);
+      i18n.locale = language;
+      setSelectedLanguage(language);
+      console.log("Language saved and set:", language);
+    } catch (error) {
+      console.error("Failed to save the language", error);
+    }
+  };
+
+  const greeting = i18n.t('greeting');
 
   return (
     <View style={styles.container}>
@@ -49,6 +60,10 @@ export default function App() {
       <StatusBar style="auto" />
     </View>
   );
+};
+
+export default function App() {
+  return <AppContent />;
 }
 
 const styles = StyleSheet.create({
