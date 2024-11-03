@@ -8,10 +8,12 @@ import { i18n, setI18nConfig } from './i18n';
 const AppContent = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(null);
 
-  const loadLanguage = async () => {
+
+//izvada sistēmas vai saglabāto valodu
+  const load = async () => {
     try {
-      const savedLanguage = await AsyncStorage.getItem('language');
-      console.log("Loaded Language from Storage:", savedLanguage);
+      const savedLanguage = await AsyncStorage.getItem('language'); //dabū saglabāto valodu
+      console.log("Loaded Language from Storage:", savedLanguage);//test
       if (savedLanguage) {
         i18n.locale = savedLanguage;
         setSelectedLanguage(savedLanguage);
@@ -19,15 +21,15 @@ const AppContent = () => {
         setI18nConfig();
         setSelectedLanguage(i18n.locale);
       }
-      console.log("Current Locale Set:", i18n.locale);
+      console.log("Current Locale Set:", i18n.locale); //test
     } catch (error) {
-      console.error("Failed to load the language", error);
+      console.error("Failed to load the language", error);//test
     }
   };
 
   useEffect(() => {
-    // Initial load
-    loadLanguage();
+    // Isākuma load
+    load();
   }, []);
 
   const saveLanguage = async (language) => {
@@ -35,17 +37,18 @@ const AppContent = () => {
       await AsyncStorage.setItem('language', language);
       i18n.locale = language;
       setSelectedLanguage(language);
-      console.log("Language saved and set:", language);
+      console.log("Language saved and set:", language); //test
     } catch (error) {
-      console.error("Failed to save the language", error);
+      console.error("Failed to save the language", error); //test
     }
   };
-
+//testing
   const greeting = i18n.t('greeting');
   console.log("Greeting:", greeting);
   console.log("Selected Language:", selectedLanguage);
   console.log("System Locale:", Localization.getLocales()[0].languageTag);
 
+  //pogas + saglabājas izvēle
   return (
     <View style={styles.container}>
       <Text>{greeting}</Text>
@@ -59,10 +62,12 @@ const AppContent = () => {
   );
 };
 
+//lai parādās mājaslapa
 export default function App() {
   return <AppContent />;
 }
 
+//html
 const styles = StyleSheet.create({
   container: {
     flex: 1,
