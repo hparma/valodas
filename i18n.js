@@ -12,7 +12,7 @@ const setI18nConfig = () => {
   const locales = Localization.getLocales(); //sarkasts ar tām vērtībām
   if (locales.length > 0) {
     const locale = locales[0].languageTag; //dabū sistēmas locālas vērtības
-    const simpleLocale = locale.startsWith('lv') ? 'lv' : locale.split('-')[0]; //sadala en-LV
+    const simpleLocale = locale.split('-')[0];
     console.log("Detected Locale:", simpleLocale); //testing
     i18n.locale = simpleLocale; //set i18n kā local
   }
