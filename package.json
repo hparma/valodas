@@ -13,14 +13,14 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.3",
-    "@react-native-async-storage/async-storage": "^2.0.0",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "expo": "~51.0.28",
     "expo-localization": "~15.0.3",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
-    "react-native-localize": "^3.2.1",
+    "react-native-localize": "^3.3.0",
     "react-native-web": "~0.19.10",
     "valodas": "file:"
   },
