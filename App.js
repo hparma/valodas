@@ -25,18 +25,9 @@ const AppContent = () => {
     }
   };
 
-  const clearSavedLanguage = async () => { 
-    try { 
-      await AsyncStorage.removeItem('language'); 
-      console.log("Cleared saved language from storage"); 
-    } catch (error) { 
-      console.error("Failed to clear the saved language", error);
-     }
-     };
   
   useEffect(() => {
     // Isākuma load
-    clearSavedLanguage(); // Clear saved language once
     loadLanguage(); // Load system language    
   }, []);
   
