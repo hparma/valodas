@@ -32,11 +32,6 @@ const AppContent = () => {
 
   
   useEffect(() => {
-    // Isākuma load
-    loadLanguage(); // Load system language    
-  }, []);
-  
-  useEffect(() => {
     // Load language on initial mount
     loadLanguage();
 
