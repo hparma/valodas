@@ -5,7 +5,7 @@ const{width,height}=Dimensions.get("window")
 export const styles = StyleSheet.create({
 imageBackground: {
     width: width, // Full screen width
-    height: height / 3, // 1/3 of the screen height
+    height: height / 2, // 1/3 of the screen height
     justifyContent: 'center', // Center content vertically within the image
     alignItems: 'center', // Center content horizontally within the image
 },

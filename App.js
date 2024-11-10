@@ -4,8 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
 import * as Localization from 'react-native-localize';
 import { i18n, setI18nConfig } from './i18n';
-import { styles } from './styles'; // Update the import path as necessary
-import { ImageBackground } from 'react-native'; // Add this line
+import { styles } from './styles'; 
+import { ImageBackground } from 'react-native'; 
 
 
 const AppContent = () => {
@@ -17,16 +17,16 @@ const AppContent = () => {
       const savedLanguage = await AsyncStorage.getItem('language');
       console.log("Loaded Language from Storage:", savedLanguage);
       if (savedLanguage) {
-        setI18nConfig(savedLanguage); // Set I18n locale to saved language
+        setI18nConfig(savedLanguage); 
         setSelectedLanguage(savedLanguage);
       } else {
         const systemLocale = Localization.getLocales()[0].languageTag;
-        setI18nConfig(systemLocale); // Set I18n locale to system locale if no saved language
+        setI18nConfig(systemLocale); 
         setSelectedLanguage(systemLocale);
       }
-      console.log("Current Locale Set:", i18n.locale);
+      console.log("Current Locale Set:", i18n.locale);//test
     } catch (error) {
-      console.error("Failed to load the language", error);
+      console.error("Failed to load the language", error); //test
     }
   };
 
@@ -62,11 +62,11 @@ const AppContent = () => {
       };
 
       window.addEventListener('focus', handleFocus);
-      console.log("focus web2:");
+      console.log("focus web2:"); //test pārbauda vai atpakaļ fokuss un refresh
 
       return () => {
         window.removeEventListener('focus', handleFocus);
-        console.log("focus web3:");
+        console.log("focus web3:"); //test pārbauda vai atpakaļ fokuss un refresh
       };
     }
   }, [locale]);
@@ -74,11 +74,11 @@ const AppContent = () => {
   const saveLanguage = async (language) => {
     try {
       await AsyncStorage.setItem('language', language);
-      setI18nConfig(language); // Set I18n locale to selected language
+      setI18nConfig(language); 
       setSelectedLanguage(language);
-      console.log("Language saved and set:", language);
+      console.log("Language saved and set:", language); //test
     } catch (error) {
-      console.error("Failed to save the language", error);
+      console.error("Failed to save the language", error); //test
     }
   };
 
@@ -88,15 +88,16 @@ const AppContent = () => {
   console.log("System Locale:", locale);
 
 
-
+//izkats/ front end
   return (
     <View style={styles.container}> 
     <ImageBackground
-      source={require('./assets/images/homepage.jpg')}
-      style={styles.imageBackground} // Ensure it fills the entire screen
-      imageStyle={{ resizeMode: 'cover' }} // Make sure the image covers the entire screen without white space
+      source={require('./assets/images/homepage.jpg')} //bilde
+      style={styles.imageBackground} 
+      imageStyle={{ resizeMode: 'cover' }} 
     >
-      <Text style={styles.greeting}>{greeting}</Text>
+    
+      <Text style={styles.greeting}>{greeting}</Text> 
       </ImageBackground>
 
       <View style={{ alignItems: 'center', marginTop: 20 }}></View>
