@@ -4,10 +4,10 @@ const{width,height}=Dimensions.get("window")
 
 export const styles = StyleSheet.create({
 imageBackground: {
-    width: width, // Full screen width
-    height: height / 2, // 1/3 of the screen height
-    justifyContent: 'center', // Center content vertically within the image
-    alignItems: 'center', // Center content horizontally within the image
+    width: width, 
+    height: height / 2, 
+    justifyContent: 'center',
+    alignItems: 'center', 
 },
   greeting: {
     fontSize: 60,
@@ -25,6 +25,6 @@ imageBackground: {
   
   container: {
     flex: 1,
-    backgroundColor: '#4e4e4e', // Set a background color if you want
+    backgroundColor: '#4e4e4e', 
   },
 });

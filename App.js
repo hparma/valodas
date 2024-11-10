@@ -9,17 +9,19 @@ import { ImageBackground } from 'react-native';
 
 
 const AppContent = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState(i18n.locale);
-  const [locale, setLocale] = useState(Localization.getLocales()[0].languageTag);
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.locale); // mainīgiem iedot i18
+  const [locale, setLocale] = useState(Localization.getLocales()[0].languageTag); //saglabā valodu
 
+
+  //funkcija kas parāda valodas izvēli
   const loadLanguage = async () => {
     try {
-      const savedLanguage = await AsyncStorage.getItem('language');
+      const savedLanguage = await AsyncStorage.getItem('language'); //pārbauda vai ir jau ir valoda
       console.log("Loaded Language from Storage:", savedLanguage);
-      if (savedLanguage) {
+      if (savedLanguage) { // ja ir saglabāta tad izmanto to
         setI18nConfig(savedLanguage); 
         setSelectedLanguage(savedLanguage);
-      } else {
+      } else { // ja nav tad izmanto to kas ir sistēmā
         const systemLocale = Localization.getLocales()[0].languageTag;
         setI18nConfig(systemLocale); 
         setSelectedLanguage(systemLocale);
@@ -35,8 +37,7 @@ const AppContent = () => {
     // Load language on initial mount
     loadLanguage();
 
-    if (Platform.OS !== 'web') {
-      // Only listen to AppState changes on mobile
+    if (Platform.OS !== 'web') { //izmaiņas mobīlā aplikācijā
       const handleAppStateChange = (nextAppState) => {
         const systemLocale = Localization.getLocales()[0].languageTag;
         if (nextAppState === 'active' && systemLocale !== locale) {
@@ -44,14 +45,12 @@ const AppContent = () => {
           loadLanguage(); // Refresh language if system locale has changed
         }
       };
-
-      AppState.addEventListener('change', handleAppStateChange);
-
+        //atkārtoti ielādē valodu, ja lietotne kļūst aktīva un ir mainīta sistēmas lokalizācija
+      AppState.addEventListener('change', handleAppStateChange); 
       return () => {
         AppState.removeEventListener('change', handleAppStateChange);
       };
     } else {
-      // Handle the focus and blur events for web
       const handleFocus = () => {
         const systemLocale = Localization.getLocales()[0].languageTag;
         if (systemLocale !== locale) {
@@ -71,6 +70,7 @@ const AppContent = () => {
     }
   }, [locale]);
 
+  //saglabā valodas izv;eli
   const saveLanguage = async (language) => {
     try {
       await AsyncStorage.setItem('language', language);
@@ -91,11 +91,15 @@ const AppContent = () => {
 //izkats/ front end
   return (
     <View style={styles.container}> 
-    <ImageBackground
-      source={require('./assets/images/homepage.jpg')} //bilde
-      style={styles.imageBackground} 
-      imageStyle={{ resizeMode: 'cover' }} 
-    >
+<ImageBackground
+  source={
+ 
+require('./assets/images/homepage.jpg')}
+  style={styles.
+  style={sty
+imageBackground} 
+  resizeMode="cover"
+>
     
       <Text style={styles.greeting}>{greeting}</Text> 
       </ImageBackground>
