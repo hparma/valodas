@@ -1,4 +1,8 @@
 {
-    "greeting": "Hallo Welt"
+    "greeting": "Hallo Welt", 
+    "languageSelection": "Sprache auswählen", 
+    "login": "Einloggen", 
+    "signup": "Melden Sie sich an"
+
   }
   

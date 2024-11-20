@@ -16,13 +16,17 @@ imageBackground: {
     justifyContent: 'center',
   },
   buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center', // Center the buttons together
     marginBottom: 20,
-    gap: 10, // Add spacing between buttons if React Native supports 'gap'
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 5, // Add spacing between buttons if React Native supports 'gap'
     // fd9a25
   },
-  
+  authButtonContainer: { 
+    flexDirection: 'row', 
+    justifyContent: 'center', 
+    marginBottom: 20, 
+    gap: 10, },
   container: {
     flex: 1,
     backgroundColor: '#4e4e4e', 
