@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, Button, ImageBackground, Alert } from 'react-native';
 import { checkUser } from './database';
 import { styles } from './styles';
 
@@ -32,7 +32,13 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+        <ImageBackground
+          source={require('./assets/images/homepage.jpg')}
+          style={styles.imageBackground}
+          resizeMode="cover"
+        >
       <Text style={styles.titleSignup}>Login</Text>
+      </ImageBackground>
       <TextInput
         style={styles.input}
         placeholder="Username"

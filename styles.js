@@ -31,6 +31,10 @@ imageBackground: {
   container: {
     flex: 1,
     backgroundColor: '#4e4e4e', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    padding: 16,
+
   },
   title: {
     fontSize: 24,
@@ -51,7 +55,36 @@ imageBackground: {
     borderColor: '#fd9a25',
     borderRadius: 4,
     justifyContent: 'center',
+    color: 'white',
     
   },
+  titleSignup: {
+    fontSize: 60,
+    color: 'white',
+    fontWeight: 'bold',
+    justifyContent: 'center',
+   }, 
+   buttonContainer: { 
+    marginVertical: 16, 
+  }, 
+  subtitle: { 
+    fontSize: 18, 
+    marginVertical: 8, 
+    color: 'white',
+  }, 
+  input: { 
+    height: 40, 
+    borderColor: '#ccc', 
+    borderWidth: 1, 
+    paddingHorizontal: 8, 
+    width: '80%', 
+    marginBottom: 16, 
+    color: 'white',
+  }, 
+  resultContainer: { 
+    marginTop: 16, 
+    alignItems: 'center', 
+    color: 'white',
+  }, 
   
 });
