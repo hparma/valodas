@@ -4,7 +4,7 @@ import * as SQLite from 'expo-sqlite';
 let db;
 //parbauda platformas
 if (Platform.OS !== 'web') {
-  db = SQLite.openDatabase('userDatabase.db');
+  db = SQLite.openDatabaseSync('userDatabase.db');
 }
 
 // inicalize datubazi
