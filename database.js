@@ -2,11 +2,12 @@ import { Platform } from 'react-native';
 import * as SQLite from 'expo-sqlite';
 
 let db;
+//parbauda platformas
 if (Platform.OS !== 'web') {
   db = SQLite.openDatabase('userDatabase.db');
 }
 
-// Initialize the database table
+// inicalize datubazi
 export const initializeDatabase = () => {
   if (Platform.OS === 'web') {
     console.log('Using localStorage for web.');
@@ -27,15 +28,14 @@ export const initializeDatabase = () => {
     );
   });
 };
-
-// Function to add a user to the database
+//pievienot user
 export const addUser = (email, username, password, successCallback, errorCallback) => {
   if (Platform.OS === 'web') {
     console.log('Saving user to localStorage.');
     try {
-      let users = JSON.parse(localStorage.getItem('users')) || [];
+      let users = JSON.parse(localStorage.getItem('users')) || []; 
       users.push({ email, username, password });
-      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('users', JSON.stringify(users)); //web versijai izmanto local storage
       successCallback({ insertId: users.length });
     } catch (error) {
       errorCallback(error);
